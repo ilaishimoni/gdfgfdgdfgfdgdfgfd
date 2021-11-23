@@ -13,12 +13,20 @@ public class CustomAdapter extends BaseAdapter {
     String cityList[];
     int symbols[];
     LayoutInflater inflter;
+    ImageView iv;
+    TextView tv;
+    TextView tv2;
 
-    public CustomAdapter(Context applicationContext, String[] cityList, int[] symbols, String[] capital) {
+    int [] flag_id={R.drawable.white,R.drawable.israel,R.drawable.usa,R.drawable.italy,R.drawable.japan, R.drawable.germany, R.drawable.russia, R.drawable.france};
+    String [] country = {"","israel", "usa", "italy", "japan", "germany", "russia", "france"};
+    String [] capital = {"","Jerusalem", "washington", "Roma", "tokyo", "berlin", "moscow", "paris"};
+
+    public CustomAdapter(Context applicationContext, String[] cityList, int[] symbols, String[]capital) {
         this.context = context;
         this.cityList = cityList;
         this.symbols = symbols;
         inflter = (LayoutInflater.from(applicationContext));
+
     }
 
     @Override
@@ -40,10 +48,13 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflter.inflate(R.layout.custom_lv_layout, null);
-        TextView city = (TextView) view.findViewById(R.id.tV);
-        ImageView symbol = (ImageView) view.findViewById(R.id.iV);
-        city.setText(cityList[i]);
-        symbol.setImageResource(symbols[i]);
+        tv = (TextView) view.findViewById(R.id.tv);
+        tv2 = (TextView) view.findViewById(R.id.tv2);
+        iv = (ImageView) view.findViewById(R.id.iV);
+
+        tv.setText(country[i]);
+        tv2.setText(capital[i]);
+        iv.setImageResource(flag_id[i] );
         return view;
     }
 }
